@@ -49,9 +49,8 @@ def calculate_precision_recall(user_id, recommended_movies, k=30):
 
     true_positives = len(top_k_recommendations & actual_liked_movies)
     precision = true_positives / len(top_k_recommendations) if len(top_k_recommendations) > 0 else 0
-    recall = true_positives / len(actual_liked_movies) if len(actual_liked_movies) > 0 else 0
 
-    return precision, recall
+    return precision
 
 
 if __name__ == "__main__":
@@ -60,7 +59,7 @@ if __name__ == "__main__":
     recommended_movies_knn = recommend_by_knn_with_rated(user_id=user_id, top_n=top_n)
 
 
-    precision_knn, recall_knn = calculate_precision_recall(user_id, recommended_movies_knn, k=top_n)
+    precision_knn = calculate_precision_recall(user_id, recommended_movies_knn, k=top_n)
 
     print("Evaluation Criterion of Collaborative Filtering")
     print(f"Base User ID: {user_id}, recommended movies: {recommended_movies_knn}")
